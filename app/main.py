@@ -1,21 +1,34 @@
 from fastapi import FastAPI
+from app.db import get_db_connection
+from app.endpoints.menu import router as menu_router
 
 app = FastAPI(
-    title="NLP Mini System",
-    description="NLP and Machine Learning Mini System",
+    title="Chicken Ordering System API",
+    description="API for a chicken food ordering system",
     version="1.0.0"
 )
+
+app.include_router(menu_router)
 
 
 @app.get("/")
 def root():
     return {
-        "message": "NLP Mini System API is running"
+        "message": "Chicken Ordering System API is running!"
     }
 
 
-@app.get("/api/health")
-def health():
+@app.get("/test-db")
+def test_database():
+    connection = get_db_connection()
+
+    if connection.is_connected():
+        connection.close()
+
+        return {
+            "message": "Database connection successful!"
+        }
+
     return {
-        "status": "ok"
+        "message": "Database connection failed!"
     }
