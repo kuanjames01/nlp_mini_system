@@ -1,7 +1,21 @@
-"""Temporary order data will be added here."""
+"""Allowed values for order fields."""
 
 
-class OrderData:
-    """Temporary data source for orders."""
+ORDER_STATUSES = (
+    "Pending",
+    "Preparing",
+    "Ready",
+    "Completed",
+    "Cancelled",
+)
 
-    pass
+PAYMENT_METHODS = (
+    "Cash",
+    "Online",
+)
+
+PAYMENT_STATUSES = (
+    "Pending",
+    "Paid",
+    "Failed",
+)
